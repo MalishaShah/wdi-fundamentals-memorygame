@@ -40,6 +40,14 @@ function flipCard(){
         checkForMatch();
     }
 }
+
+function shuffle(array){
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+}
+
 function createBoard (){
     for(var i = 0; i<cards.length; i++){
         var newCard = document.createElement('img');
@@ -49,4 +57,18 @@ function createBoard (){
         document.getElementById('game-board').appendChild(newCard);
     }
 }
+function clearBoard(){
+    var board = document.getElementById('game-board');
+    board.innerHTML = "";
+}
+function reset(){
+    clearBoard();
+    cardsInPlay = [];
+    shuffle(cards);
+    createBoard();
+}
+
+let resetButton = document.querySelector('button');
+resetButton.addEventListener('click', reset);
+
 createBoard();
